@@ -8,7 +8,8 @@ RUN apk add --no-cache --virtual .build-deps \
     libtool \
     libxml2-dev \
     postgresql-dev \
-    sqlite-dev
+    sqlite-dev \
+    librdkafka-dev
 
 # Install production dependencies
 RUN apk add --no-cache \
@@ -35,13 +36,8 @@ RUN apk add --no-cache \
     postgresql-libs \
     rsync \
     zlib-dev \
-    autoconf
-
-RUN git clone --depth 1 https://github.com/edenhill/librdkafka.git \
-    && cd librdkafka \
-    && ./configure \
-    && make \
-    && make install
+    autoconf \
+    librdkafka-dev
 
 RUN pecl channel-update pecl.php.net 
 
@@ -77,8 +73,6 @@ RUN docker-php-ext-install \
     tokenizer \
     xml \
     zip
-
-RUN rm -rf /librdkafka
 
 # Install composer
 ENV COMPOSER_HOME /composer
