@@ -8,8 +8,7 @@ RUN apk add --no-cache --virtual .build-deps \
     libtool \
     libxml2-dev \
     postgresql-dev \
-    sqlite-dev \
-    librdkafka-dev
+    sqlite-dev
 
 # Install production dependencies
 RUN apk add --no-cache \
